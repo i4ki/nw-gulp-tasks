@@ -1,6 +1,6 @@
 'use strict';
 
-var gulp = require('gulp-tasks')({
+var gulp = require('./lib/nw-gulp-tasks')({
 
     less: {
         compile: './src/assets/less/project.less',
@@ -10,6 +10,16 @@ var gulp = require('gulp-tasks')({
         dest: {
             css: './build/assets/css',
             less: './build/assets/less'
+        }
+    },
+
+    scripts: {
+        name: 'slug-module-name',
+        srcs: './src/modules/**/*.js',
+        bundle: [],
+        dest: {
+            tmp: './tmp',
+            js: './build/js'
         }
     }
 
