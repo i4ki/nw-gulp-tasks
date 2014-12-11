@@ -20,17 +20,17 @@ function less(options) {
     var settings = _.extend(config, options);
 
     var tasks = [{
-        name: 'styles',
+        name: 'less',
         desc: 'Compile and copy styles to build folder',
         callback: runner
     },{
-        name: 'styles:compile',
+        name: 'less:compile',
         callback: compile
     },{
-        name: 'styles:bundle',
+        name: 'less:bundle',
         callback: bundle
     },{
-        name: 'styles:copy',
+        name: 'less:copy',
         callback: copy
     }];
 
@@ -38,9 +38,9 @@ function less(options) {
 
     function runner(done) {
         runSequence(
-            'styles:compile',
-            'styles:bundle',
-            'styles:copy',
+            'less:compile',
+            'less:bundle',
+            'less:copy',
             done
         );
     }
