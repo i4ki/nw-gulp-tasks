@@ -61,7 +61,7 @@ function scripts(options) {
     function jshint(done) {
         return gulp.src(settings.srcs)
             .pipe($.jshint())
-            .pipe($.jshint.reporter('jshint-stylish'))
+            // .pipe($.jshint.reporter('jshint-stylish'))
             .pipe($.size({title: 'jshint'}));
     }
 
@@ -106,6 +106,7 @@ function scripts(options) {
 
         return gulp.src(settings.bundle)
             .pipe($.concat(settings.name+'.bundle.js'))
+            .pipe($.uglify({preserveComments:'some'}))
             .pipe(gulp.dest(settings.dest.js))
             .pipe($.size({title: 'scripts:bundle'}));
     }
