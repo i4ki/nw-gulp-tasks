@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
+var del = require('del');
 var _ = require('lodash');
 
 var config = {
@@ -19,7 +20,7 @@ function scripts(options) {
     var settings = _.extend(config, options);
 
     var tasks = [{
-        name: 'styles',
+        name: 'scripts',
         desc: 'Optimize and minify scripts to build folder',
         callback: runner
     },{
@@ -39,14 +40,14 @@ function scripts(options) {
         callback: bundle
     },{
         name: 'scripts:clean-tmp',
-        callback: clean
+        callback: del.bind(null, [settings.dest.tmp])
     }];
 
     ////////////////
 
     function runner(done) {
         runSequence(
-            'jshint',
+            'scripts:jshint',
             'scripts:tmp',
             'scripts:directives',
             'scripts:build',
@@ -108,11 +109,6 @@ function scripts(options) {
             .pipe(gulp.dest(settings.dest.js))
             .pipe($.size({title: 'scripts:bundle'}));
     }
-
-    function clean(done) {
-        return del.bind(null, [dists.tmp]));
-    }
-
 
   ////////////////
 
