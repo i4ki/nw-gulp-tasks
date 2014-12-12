@@ -25,7 +25,9 @@ module.exports = function(settings) {
         });
     });
 
-    gulp.task('build', 'Run tasks: ' + bundle.join(', '), bundle);
+    if (bundle.length) {
+        gulp.task('build', 'Run tasks: ' + bundle.join(', '), bundle);
+    }
 
     return gulp;
 };
