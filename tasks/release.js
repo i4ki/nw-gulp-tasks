@@ -5,6 +5,8 @@ var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var del = require('del');
 var _ = require('lodash');
+var pkg = require('./package.json');
+var argv = require('yargs').argv;
 
 var config = {
     name: 'project'
