@@ -64,7 +64,7 @@ function  release(options) {
     function tag(done) {
         return gulp.src('./')
             .pipe($.shell('git tag v' + argv.v))
-            .pipe($.git.push('origin', '--tags'))
+            .pipe($.shell('git push origin --tags'))
             .pipe($.size({title: 'release:tag'}));
     }
 
