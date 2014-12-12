@@ -20,6 +20,12 @@ function  release(options) {
     },{
         name: 'release:bump',
         callback: bump
+    },{
+        name: 'release:rebase',
+        callback: rebase
+    },{
+        name: 'release:tag',
+        callback: tag
     }];
 
     ////////////////
