@@ -5,7 +5,6 @@ var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var del = require('del');
 var _ = require('lodash');
-var pkg = require('./package.json');
 var argv = require('yargs').argv;
 
 var config = {
@@ -42,40 +41,29 @@ function  release(options) {
     }
 
     function bump(done) {
-
-        var bump = (argv.v !== undefined && argv.v !== pkg.version);
-        var message = '[CHANGE] - Bump bower.json and package.json';
-        var options = {};
-
-        if (bump) {
-            options.version = argv.v;
-        }
-
         return gulp.src([
                 './bower.json',
                 './package.json'
             ])
-            .pipe($.if(bump, $.bump(options)))
+            .pipe($.bump({version: argv.v}))
             .pipe(gulp.dest('./'))
             .pipe($.git.add())
-            .pipe($.git.commit(message))
+            .pipe($.git.commit('[CHANGE] - Bump bower.json and package.json'))
             .pipe($.size({title: 'release:bump'}));
     }
 
     function rebase(done) {
         return gulp.src('./')
-            .pipe($.git.checkout('master'))
-            .pipe($.git.merge('develop'))
-            .pipe($.git.checkout('develop'))
-            .pipe($.git.push('origin', '--all'))
+            .pipe($.shell('git checkout master'))
+            .pipe($.shell('git merge develop'))
+            .pipe($.shell('git checkout develop'))
+            .pipe($.shell('git push origin --all'))
             .pipe($.size({title: 'release:rebase'}));
     }
 
     function tag(done) {
-        var version = (argv.v !== undefined) ? argv.v : pkg.version;
-
         return gulp.src('./')
-            .pipe($.shell('git tag v'+version))
+            .pipe($.shell('git tag v' + argv.v))
             .pipe($.git.push('origin', '--tags'))
             .pipe($.size({title: 'release:tag'}));
     }
