@@ -8,7 +8,7 @@ module.exports = function(settings) {
 
     _.forEach(settings, function(options, name) {
 
-        var task;
+        var tasks;
         var build = name.indexOf('_');
 
         if (!build) {
