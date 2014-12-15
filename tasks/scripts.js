@@ -74,11 +74,14 @@ function scripts(options) {
 
     // Analysis Report
     function analysis(done) {
-        var jshint = fs.readFileSync('./.jshintrc', 'utf8');
+        var options = {};
+        var jshint = (fs.existsSync('./.jshintrc'))
+            ? fs.readFileSync('./.jshintrc', 'utf8')
+            : false;
 
-        var options = {
-          jshint: JSON.parse(jshint)
-        };
+        if (jshint) {
+           options.jshint = JSON.parse(jshint);
+        }
 
         var callback = function (report) {
             done();
