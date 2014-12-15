@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
+var plato = require('plato');
 var del = require('del');
 var _ = require('lodash');
 
@@ -61,7 +62,7 @@ function scripts(options) {
     function jshint(done) {
         return gulp.src(settings.srcs)
             .pipe($.jshint())
-            // .pipe($.jshint.reporter('jshint-stylish'))
+            .pipe($.jshint.reporter('jshint-stylish'))
             .pipe($.size({title: 'jshint'}));
     }
 
@@ -84,6 +85,7 @@ function scripts(options) {
                 './tmp/**/module.js',
                 './tmp/**/*.js'
             ])
+            .pipe($.shell('plato -r -d reports/analysis -l .jshintrc'))
             .pipe($.concat(settings.name+'.js'))
             .pipe(gulp.dest(settings.dest.js))
             .pipe($.uglify({preserveComments:'some'}))
