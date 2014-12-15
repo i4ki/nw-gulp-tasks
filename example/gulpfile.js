@@ -21,6 +21,8 @@ var gulp = require('./lib/nw-gulp-tasks')({
             tmp: './tmp',
             js: './build/js'
         }
-    }
+    },
+
+    _release: {}
 
 });

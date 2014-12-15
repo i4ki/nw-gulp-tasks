@@ -2,6 +2,10 @@
 
 var gulp = require('./index')({
 
-   _release: {}
+    scripts: {
+        _tasks: ['analysis']
+    },
+
+    _release: {}
 
 });

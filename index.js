@@ -20,8 +20,12 @@ module.exports = function(settings) {
         tasks =  require('./tasks/' + name)(options);
 
         tasks.forEach(function(task){
-            task.desc = task.desc || false;
-            gulp.task(task.name, task.desc, task.callback);
+            var taskName = task.name.replace(name+':', '');
+
+            if ( options._tasks === undefined || options._tasks.indexOf(taskName) > -1 ) {
+                task.desc = task.desc || false;
+                gulp.task(task.name, task.desc, task.callback);
+            }
         });
     });
 
