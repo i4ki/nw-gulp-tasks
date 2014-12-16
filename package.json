@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@192.168.10.107:10022/lagoinha/gulp-tasks.git"
+    "url": "git@github.com/NeowayLabs/nw-gulp-tasks.git"
   },
   "keywords": [
     "gulp",

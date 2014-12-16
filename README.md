@@ -1,6 +1,8 @@
 # Gulp tasks
 
-## Instalation
+Neoway's reusable gulp tasks.
+
+## Installation
 
 ```
 npm install nw-gulp-tasks
