@@ -112,7 +112,7 @@ function scripts(options) {
             ])
             .pipe($.concat(settings.name+'.js'))
             .pipe(gulp.dest(settings.dest.js))
-            .pipe($.uglify({preserveComments:'some'}))
+            .pipe($.uglify({preserveComments:'some'}).on('error', console.error))
             .pipe($.rename({
                 suffix: ".min"
             }))
