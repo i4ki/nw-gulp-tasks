@@ -3,7 +3,7 @@
 ## Instalation
 
 ```
-npm install gulp-tasks
+npm install nw-gulp-tasks
 ```
 
 ## Usage
