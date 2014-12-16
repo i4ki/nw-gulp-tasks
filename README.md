@@ -3,10 +3,8 @@
 ## Instalation
 
 ```
-bower install --save-dev nw-gulp-tasks=ssh://git@192.168.10.107:10022/lagoinha/gulp-tasks.git
+npm install gulp-tasks
 ```
-
-And add npm dependencies into your devDevependencies, and install.
 
 ## Usage
 
