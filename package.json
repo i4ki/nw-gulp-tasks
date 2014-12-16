@@ -10,6 +10,15 @@
     "type": "git",
     "url": "ssh://git@192.168.10.107:10022/lagoinha/gulp-tasks.git"
   },
+  "keywords": [
+    "gulp",
+    "tasks",
+    "jshint",
+    "code analysis",
+    "minification",
+    "build",
+    "bundle"
+  ],
   "author": "Bruno Bertolini <dev@brunobertolini.com>",
   "license": "No License",
   "dependencies": {
